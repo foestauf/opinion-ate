@@ -1,5 +1,5 @@
-import {combineReducers} from 'redux';
-import {STORE_RESTAURANTS} from "./actions";
+import { combineReducers } from 'redux';
+import { STORE_RESTAURANTS } from './actions';
 
 const records = (state = [], action) => {
   switch (action.type) {
@@ -8,7 +8,7 @@ const records = (state = [], action) => {
     default:
       return state;
   }
-}
+};
 
 export default combineReducers({
   records,
