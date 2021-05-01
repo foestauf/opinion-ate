@@ -12,11 +12,13 @@ describe('RestaurantList', () => {
     loadRestaurants = jest.fn().mockName('loadRestaurants');
 
     context = render(
-        <RestaurantList loadRestaurants={loadRestaurants} restaurants={restaurants}/>,
-    )
-  })
+        <RestaurantList
+            loadRestaurants={loadRestaurants}
+            restaurants={restaurants}
+        />,
+    );
+  });
   it('loads restaurants on first render', () => {
-
     expect(loadRestaurants).toHaveBeenCalled();
   });
   it('displays the restaurants', () => {
