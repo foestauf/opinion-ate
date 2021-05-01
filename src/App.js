@@ -1,7 +1,4 @@
+import RestaurantScreen from './RestaurantScreen';
 
-const App = () => (
-    <div>
-      Hello, World.
-    </div>
-)
+const App = () => <div><RestaurantScreen /></div>;
 export default App;
