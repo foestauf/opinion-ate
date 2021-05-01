@@ -46,6 +46,26 @@ describe('restaurants', () => {
       expect(store.getState().loading).toEqual(false);
     });
   });
+  describe('when loading fails', () => {
+    let store;
+    beforeEach(() => {
+      const api = {
+        loadRestaurants: () => Promise.reject(),
+      };
+      const initialState = {};
+
+      store = createStore(
+        restaurantReducer,
+        initialState,
+        applyMiddleware(thunk.withExtraArgument(api)),
+      );
+
+    });
+    it('sets an error flag', () => {
+      expect(store.getState().loadError).toEqual(true);
+    });
+
+  });
   describe('while loading', () => {
     it('sets a loading flag', () => {
       const api = {

@@ -3,9 +3,12 @@ export const START_LOADING = 'START_LOADING';
 
 export const loadRestaurants = () => (dispatch, getState, api) => {
   dispatch(startLoading());
-  api.loadRestaurants().then(records => {
-    dispatch(storeRestaurants(records));
-  });
+  api
+    .loadRestaurants()
+    .then(records => {
+      dispatch(storeRestaurants(records));
+    })
+    .catch(() => {});
 };
 
 const startLoading = () => ({
