@@ -27,4 +27,6 @@ const storeRestaurants = records => ({
   records,
 });
 
-export const createRestaurant = () => () => {};
+export const createRestaurant = name => (dispatch, getState, api) => {
+  api.createRestaurant(name);
+};
