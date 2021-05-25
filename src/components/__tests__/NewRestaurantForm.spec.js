@@ -58,5 +58,30 @@ describe('NewRestaurantForm', () => {
       const { queryByText } = context;
       expect(queryByText(requiredError)).not.toBeNull();
     });
+    it('does not call createRestaurant', () => {
+      expect(createRestaurant).not.toHaveBeenCalled();
+    });
+  });
+  describe('when collecting a validation error', () => {
+    beforeEach(async () => {
+      createRestaurant.mockResolvedValue();
+      const { getByPlaceholderText, getByTestId } = context;
+
+      await userEvent.type(getByPlaceholderText('Add Restaurant'), '');
+      userEvent.click(getByTestId('new-restaurant-submit-button'));
+      await act(flushPromises);
+
+      await userEvent.type(
+        getByPlaceholderText('Add Restaurant'),
+        restaurantName,
+      );
+      userEvent.click(getByTestId('new-restaurant-submit-button'));
+
+      return act(flushPromises);
+    });
+    it('clears the validation error', () => {
+      const { queryByText } = context;
+      expect(queryByText(requiredError)).toBeNull();
+    });
   });
 });
